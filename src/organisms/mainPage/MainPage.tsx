@@ -1,7 +1,7 @@
 const MainPage = () => {
   return (
     <main
-      className="h-screen w-screen bg-contain"
+      className="bg-fill h-screen w-screen bg-center bg-no-repeat"
       style={{
         backgroundImage: "url(/images/backgrounds/main-background.png)",
       }}

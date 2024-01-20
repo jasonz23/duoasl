@@ -95,7 +95,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               void router.push("/");
             }}
           >
-            <Image src="/images/logo-white.png" alt="logo" fill />
+            DuoASL
           </div>
           {isLoggedIn && (
             <div
