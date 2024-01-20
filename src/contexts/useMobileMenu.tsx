@@ -47,6 +47,7 @@ export const mobileMenuReducer = (
 
 const MobileMenuContext = createContext<{
   state: InitialStateType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: React.Dispatch<any>;
 }>({
   state: initialState,

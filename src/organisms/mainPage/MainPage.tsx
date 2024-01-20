@@ -53,7 +53,7 @@ const MainPage = () => {
       }}
     >
       <animated.button
-        className="absolute right-[38%] top-[10%]"
+        className="absolute right-[10%] top-[10%] sm:right-[38%] sm:top-[10%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(1)}
       >
@@ -61,42 +61,42 @@ const MainPage = () => {
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute left-[42%] top-[25%]"
+        className="absolute left-[40%] top-[22%] sm:left-[42%] sm:top-[25%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(2)}
       >
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute right-[35%] top-[40%]"
+        className="absolute top-[30%] sm:right-[35%] sm:top-[40%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(3)}
       >
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute right-[48%] top-[50%]"
+        className="absolute right-[7%] top-[40%] sm:right-[48%] sm:top-[50%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(4)}
       >
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute left-[35%] top-[59%]"
+        className="absolute left-[35%] top-[50%] sm:left-[35%] sm:top-[59%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(5)}
       >
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute left-[51%] top-[68%]"
+        className="absolute left-[12%] top-[60%] sm:left-[51%] sm:top-[68%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(6)}
       >
         <LilyPadImage />
       </animated.button>
       <animated.button
-        className="absolute left-[60%] top-[80%]"
+        className="absolute right-[0%] top-[75%] sm:left-[60%] sm:top-[80%]"
         style={lilyPageAnimation}
         onClick={() => goToActivity(7)}
       >

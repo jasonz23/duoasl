@@ -9,6 +9,7 @@ import useWindowSize from "~/hooks/useWindowSize/useWindowSize";
 import { MobileMenuContext } from "~/contexts/useMobileMenu";
 import Image from "next/image";
 import { SlUserFollow } from "react-icons/sl";
+import Link from "next/link";
 
 interface AccountDropDownProps {
   setHoverDropDown: (state: boolean) => void;
@@ -32,7 +33,7 @@ const AccountDropDown = (props: AccountDropDownProps) => {
 
   return (
     <div
-      className="absolute right-3 top-12 z-30 h-24 w-32 rounded-lg bg-[#48cad9]"
+      className="absolute right-3 top-12 z-30 h-24 w-32 rounded-lg bg-[#48cad9] text-xs"
       onMouseEnter={() => {
         setHoverDropDown(true);
       }}
@@ -50,7 +51,7 @@ const AccountDropDown = (props: AccountDropDownProps) => {
         onClick={handleLogOut}
         className="h-1/2 w-full rounded-b-lg px-3 text-white hover:bg-[#6dc4cf]"
       >
-        Log Out
+        <Link href="/api/auth/logout">Log Out</Link>
       </Button>
     </div>
   );
@@ -89,7 +90,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="flex h-24 w-full items-center">
           <div
-            className="relative z-30 ml-3 w-44 text-white hover:cursor-pointer"
+            className="relative z-30 ml-3 w-44 text-lg tracking-widest text-white hover:cursor-pointer"
             onClick={() => {
               if (!isLoggedIn) return;
               void router.push("/");
