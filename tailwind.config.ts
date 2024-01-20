@@ -7,6 +7,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        bubbles: ["var(--font-bubbles)"],
+        nunito: ["var(--font-nunito)"],
       },
     },
   },

@@ -89,7 +89,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="flex h-24 w-full items-center">
           <div
-            className="relative z-30 ml-3 h-8 w-44 hover:cursor-pointer"
+            className="relative z-30 ml-3 w-44 text-white hover:cursor-pointer"
             onClick={() => {
               if (!isLoggedIn) return;
               void router.push("/");
