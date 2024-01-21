@@ -157,7 +157,7 @@ const ActivityPage = (props: ActivityPageProps) => {
         type: "video/webm",
       });
       try {
-        const res = await fetch("http://localhost:8000/upload", {
+        const res = await fetch(`http://localhost:8000/upload/${activityId}`, {
           method: "POST",
           body: blob,
           headers: {
