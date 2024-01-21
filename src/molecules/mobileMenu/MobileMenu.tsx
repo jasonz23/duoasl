@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import Button from "~/atoms/button/Button";
 import { MobileMenuContext } from "~/contexts/useMobileMenu";
 // import { UserContext } from "~/contexts/useUserContext";
 // import logout from "~/firebaseApis/logout";
@@ -13,12 +14,12 @@ const Item = ({
   onClick: () => void;
 }) => {
   return (
-    <div
+    <Button
       onClick={onClick}
-      className="w-80% flex h-14 items-center justify-center rounded-full bg-[#f45ddf] text-xl font-bold text-white"
+      className="w-80% flex h-14 items-center justify-center rounded-full bg-[#48cad9] text-xl font-bold text-white hover:bg-[#48cad9]"
     >
       {children}
-    </div>
+    </Button>
   );
 };
 
