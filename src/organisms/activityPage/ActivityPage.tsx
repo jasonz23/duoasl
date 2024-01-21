@@ -190,6 +190,7 @@ const ActivityPage = (props: ActivityPageProps) => {
 
         setRecordedChunks([]);
       } catch (e) {
+        setSubmitLoading(false);
         setShowFailedModal(true);
         console.error("failed");
       }
