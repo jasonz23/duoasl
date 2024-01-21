@@ -33,8 +33,8 @@ const SuccessModal = () => {
       <Image
         src="/images/frog/main-frog.png"
         alt="success"
-        width={100}
-        height={100}
+        width={200}
+        height={200}
       />
       <Button
         onClick={() => {
@@ -47,24 +47,26 @@ const SuccessModal = () => {
   );
 };
 
-const FailedModal = () => {
-  const router = useRouter();
+interface FailedModalProps {
+  closeModal: () => void;
+  switchToLearn: () => void;
+}
+const FailedModal = (props: FailedModalProps) => {
+  const { closeModal, switchToLearn } = props;
+
   return (
     <div className="absolute left-1/2 top-1/2 flex h-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-3 rounded-lg border-2 border-black bg-white sm:w-1/2">
       <div className="">Not Quite Right</div>
       <Image
         src="/images/frog/failed.png"
         alt="success"
-        width={100}
-        height={100}
+        width={200}
+        height={200}
       />
-      <Button
-        onClick={() => {
-          router.push("/");
-        }}
-      >
-        Back To HomePage
-      </Button>
+      <div className="flex w-full justify-center gap-3">
+        <Button onClick={switchToLearn}>Watch Video Again?</Button>
+        <Button onClick={closeModal}>Retry?</Button>
+      </div>
     </div>
   );
 };
@@ -84,7 +86,7 @@ const ActivityPage = (props: ActivityPageProps) => {
   const [loadingCounter, setLoadingCounter] = React.useState(3);
   const [loadingCounterFlag, setLoadingCounterFlag] = React.useState(false);
   const [showSuccessModal, setShowSuccessModal] = React.useState(false);
-  const [showFailedModal, setShowFailedModal] = React.useState(false);
+  const [showFailedModal, setShowFailedModal] = React.useState(true);
   const [tab, setTab] = React.useState(1);
   const { isMobile } = useWindowSize();
 
@@ -170,7 +172,17 @@ const ActivityPage = (props: ActivityPageProps) => {
   return (
     <main className="relative flex h-screen w-screen flex-col items-center gap-3 pt-20">
       {showSuccessModal && <SuccessModal />}
-      {showFailedModal && <FailedModal />}
+      {showFailedModal && (
+        <FailedModal
+          closeModal={() => {
+            setShowFailedModal(false);
+          }}
+          switchToLearn={() => {
+            setTab(1);
+            setShowFailedModal(false);
+          }}
+        />
+      )}
       <div>Activity {activityId}</div>
       <div>
         How do you sign{" "}
