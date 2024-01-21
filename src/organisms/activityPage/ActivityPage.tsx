@@ -164,8 +164,16 @@ const ActivityPage = (props: ActivityPageProps) => {
             "Content-Type": "video/mp4",
           },
         });
+
+        const data = await res.json();
+
+        if (data.success) {
+          setShowSuccessModal(true);
+        } else {
+          setShowFailedModal(true);
+        }
         setSubmitLoading(false);
-        setShowSuccessModal(true);
+
         setRecordedChunks([]);
       } catch (e) {
         setShowFailedModal(true);
