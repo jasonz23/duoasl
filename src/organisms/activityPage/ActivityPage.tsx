@@ -1,9 +1,17 @@
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Webcam from "react-webcam";
 import Button from "~/atoms/button/Button";
 import Tabs from "~/atoms/tabs/Tabs";
+import { UserContext } from "~/contexts/useUserContext";
 import useWindowSize from "~/hooks/useWindowSize/useWindowSize";
 
 const ACTIVITIES = [
@@ -90,6 +98,8 @@ const ActivityPage = (props: ActivityPageProps) => {
   const [tab, setTab] = React.useState(1);
   const { isMobile } = useWindowSize();
   const [submitLoading, setSubmitLoading] = React.useState(false);
+  const { state, dispatch } = useContext(UserContext);
+  const { user } = useUser();
 
   useEffect(() => {
     if (!loadingCounterFlag) {
@@ -166,8 +176,11 @@ const ActivityPage = (props: ActivityPageProps) => {
         });
 
         const data = await res.json();
+        const completed = [...state.completed, activityId];
 
+        dispatch;
         if (data.success) {
+          localStorage.setItem(user?.email!, JSON.stringify(completed));
           setShowSuccessModal(true);
         } else {
           setShowFailedModal(true);
