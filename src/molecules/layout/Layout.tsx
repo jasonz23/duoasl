@@ -98,21 +98,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           >
             DuoASL
           </div>
-          {isLoggedIn && (
-            <div
-              className="z-30 ml-auto mr-3 hover:cursor-pointer"
-              onClick={goToUserSearchPage}
-            >
-              <SlUserFollow
-                size={32}
-                className="hover:cursor-pointer"
-                color="white"
-              />
-            </div>
-          )}
           {isLoggedIn && !isMobile && (
             <div
-              className="z-30 mr-3"
+              className="z-30 ml-auto mr-3"
               onMouseEnter={() => {
                 setHoverAccountIcon(true);
               }}
