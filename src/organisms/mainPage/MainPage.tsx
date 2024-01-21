@@ -3,6 +3,7 @@ import { animated, useSpring } from "@react-spring/web";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext } from "react";
+import Button from "~/atoms/button/Button";
 
 interface LilyPadProps {
   disabled?: boolean;
@@ -155,6 +156,15 @@ const MainPage = () => {
         )}
         <LilyPadImage disabled={!state.completed.includes("6")} />
       </animated.button>
+      <Button
+        className="absolute bottom-5 left-5 flex items-center justify-center rounded-lg bg-[#48cad9] p-3 text-white hover:bg-[#48cad9]"
+        onClick={() => {
+          localStorage.clear();
+          void router.reload();
+        }}
+      >
+        Restart?
+      </Button>
     </main>
   );
 };
