@@ -274,7 +274,9 @@ const ActivityPage = (props: ActivityPageProps) => {
                 </div>
               </div>
             )}
-            <Webcam audio={false} mirrored={true} ref={webcamRef} />
+            {!showSuccessModal && !showFailedModal && (
+              <Webcam audio={false} mirrored={true} ref={webcamRef} />
+            )}
           </div>
           <div className="h-8 w-[80%]">
             <div
