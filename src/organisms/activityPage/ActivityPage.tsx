@@ -1,11 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import Button from "~/atoms/button/Button";
+import Tabs from "~/atoms/tabs/Tabs";
 
 const ACTIVITIES = [
-  "",
-  "How do you sign 'hello'?",
-  "How do you sign 'goodbye'?",
+  {
+    question: "",
+    video: "",
+  },
+  {
+    question: "How do you sign 'hello'?",
+    video: "https://www.youtube.com/embed/SsLvqfTXo78?si=UhFlIVhjCkBRAb0y",
+  },
+  {
+    question: "",
+    video: "",
+  },
 ];
 
 interface ActivityPageProps {
@@ -22,6 +32,7 @@ const ActivityPage = (props: ActivityPageProps) => {
   const [counter, setCounter] = React.useState(5);
   const [loadingCounter, setLoadingCounter] = React.useState(3);
   const [loadingCounterFlag, setLoadingCounterFlag] = React.useState(false);
+  const [tab, setTab] = React.useState(1);
 
   useEffect(() => {
     if (!loadingCounterFlag) {
@@ -105,32 +116,65 @@ const ActivityPage = (props: ActivityPageProps) => {
   return (
     <main className="flex h-screen w-screen flex-col items-center gap-3 pt-20">
       <div>Activity {activityId}</div>
-      <div>{ACTIVITIES[id]}</div>
-      <div className="relative">
-        {loadingCounterFlag && loadingCounter > 0 && (
-          <div className="absolute z-10 flex h-full w-full items-center justify-center bg-gray-800 opacity-75">
-            <div className="z-20 text-7xl text-white">{loadingCounter}</div>
-          </div>
-        )}
-        <Webcam audio={false} mirrored={true} ref={webcamRef} />
-      </div>
-      <div className="h-8 w-[80%]">
-        <div
-          style={{
-            width: `${counter * 20}%`,
-            background:
-              "linear-gradient(76.5deg, rgb(129, 252, 255) 0.4%, rgb(255, 175, 207) 49.8%, rgb(255, 208, 153) 98.6%)",
-          }}
-          className="h-4 rounded-full"
-        />
-      </div>
-      {capturing ? (
-        <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
-      ) : (
-        <Button onClick={handleStartCaptureClick}>Start Capture</Button>
+      <div>{ACTIVITIES[id]?.question}</div>
+      <Tabs
+        selectedTab={tab}
+        tabNames={["Learn", "Practice"]}
+        setSelectedTab={(e: number) => {
+          setTab(e);
+        }}
+      />
+      {tab === 1 && (
+        <div className="flex flex-col gap-3 pt-20">
+          <iframe
+            width="560"
+            height="315"
+            src={ACTIVITIES[id]?.video}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+          <Button
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            Practice
+          </Button>
+        </div>
       )}
-      {recordedChunks.length > 0 && <Button onClick={reset}>Reset</Button>}
-      {recordedChunks.length > 0 && <Button onClick={submit}>Submit</Button>}
+      {tab === 2 && (
+        <div className="flex flex-col items-center gap-3">
+          <div className="relative">
+            {loadingCounterFlag && loadingCounter > 0 && (
+              <div className="absolute z-10 flex h-full w-full items-center justify-center bg-gray-800 opacity-75">
+                <div className="z-20 text-7xl text-white">{loadingCounter}</div>
+              </div>
+            )}
+            <Webcam audio={false} mirrored={true} ref={webcamRef} />
+          </div>
+          <div className="h-8 w-[80%]">
+            <div
+              style={{
+                width: `${counter * 20}%`,
+                background:
+                  "linear-gradient(76.5deg, rgb(129, 252, 255) 0.4%, rgb(255, 175, 207) 49.8%, rgb(255, 208, 153) 98.6%)",
+              }}
+              className="h-4 rounded-full"
+            />
+          </div>
+          {capturing ? (
+            <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
+          ) : (
+            <Button onClick={handleStartCaptureClick}>Start Capture</Button>
+          )}
+          {recordedChunks.length > 0 && <Button onClick={reset}>Reset</Button>}
+          {recordedChunks.length > 0 && (
+            <Button onClick={submit}>Submit</Button>
+          )}
+        </div>
+      )}
     </main>
   );
 };
