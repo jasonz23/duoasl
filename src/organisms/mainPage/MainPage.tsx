@@ -86,7 +86,7 @@ const MainPage = () => {
         <LilyPadImage disabled={!state.completed.includes("1")} />
       </animated.button>
       <animated.button
-        className="absolute top-[30%] sm:right-[35%] sm:top-[40%]"
+        className="absolute right-[55%] top-[30%] sm:right-[35%] sm:top-[40%]"
         style={lilyPageAnimation}
         onClick={() => {
           if (!state.completed.includes("2")) return;

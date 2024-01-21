@@ -17,11 +17,11 @@ const ACTIVITIES = [
   },
   {
     question: "Thank you",
-    video: "",
+    video: "https://www.youtube.com/embed/EPlhDhll9mw?si=ErodMi_DZMjnH81Q",
   },
   {
     question: "I Love You",
-    video: "",
+    video: "https://www.youtube.com/embed/kN1fIgAaGHo?si=i0y6cJ34nSbjkTJ0",
   },
 ];
 

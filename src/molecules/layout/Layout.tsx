@@ -33,7 +33,7 @@ const AccountDropDown = (props: AccountDropDownProps) => {
 
   return (
     <div
-      className="absolute right-3 top-12 z-30 h-24 w-32 rounded-lg bg-[#48cad9] text-xs"
+      className="absolute right-3 top-12 z-30 h-14 w-32 rounded-lg bg-[#48cad9] text-xs"
       onMouseEnter={() => {
         setHoverDropDown(true);
       }}
@@ -41,15 +41,15 @@ const AccountDropDown = (props: AccountDropDownProps) => {
         setHoverDropDown(false);
       }}
     >
-      <Button
+      {/* <Button
         onClick={goToAccountPage}
         className="h-1/2 w-full rounded-t-lg px-3 text-white hover:bg-[#6dc4cf]"
       >
         Go to Account
-      </Button>
+      </Button> */}
       <Button
         onClick={handleLogOut}
-        className="h-1/2 w-full rounded-b-lg px-3 text-white hover:bg-[#6dc4cf]"
+        className="h-full w-full rounded-lg px-3 text-white hover:bg-[#6dc4cf]"
       >
         <Link href="/api/auth/logout">Log Out</Link>
       </Button>
