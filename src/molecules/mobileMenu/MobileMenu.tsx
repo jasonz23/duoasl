@@ -60,8 +60,7 @@ const MobileMenu = () => {
     <div
       className="relative z-50 flex h-screen w-screen flex-col gap-3 px-3 pt-20"
       style={{
-        background:
-          "radial-gradient(circle at 70% 20%, rgb(241, 121, 226) 20%, rgb(252, 205, 187) 86.8%)",
+        background: "linear-gradient(to top, #9890e3 0%, #b1f4cf 100%)",
       }}
     >
       <div className="absolute right-3 top-5">
@@ -72,9 +71,6 @@ const MobileMenu = () => {
         />
       </div>
       <Item onClick={goToHomePage}>Go to Home Page</Item>
-      <Item onClick={goToCreateActivityPage}>Create Activity</Item>
-      <Item onClick={goToCalendarPage}>Calendar</Item>
-      <Item onClick={goToAccount}>Go to Account</Item>
       <Item onClick={signOut}>Log Out</Item>
     </div>
   );

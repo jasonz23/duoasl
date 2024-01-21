@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import Button from "~/atoms/button/Button";
 import Tabs from "~/atoms/tabs/Tabs";
+import useWindowSize from "~/hooks/useWindowSize/useWindowSize";
 
 const ACTIVITIES = [
   {
@@ -33,6 +34,7 @@ const ActivityPage = (props: ActivityPageProps) => {
   const [loadingCounter, setLoadingCounter] = React.useState(3);
   const [loadingCounterFlag, setLoadingCounterFlag] = React.useState(false);
   const [tab, setTab] = React.useState(1);
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     if (!loadingCounterFlag) {
@@ -125,9 +127,9 @@ const ActivityPage = (props: ActivityPageProps) => {
         }}
       />
       {tab === 1 && (
-        <div className="flex flex-col gap-3 pt-20">
+        <div className="flex flex-col gap-3 pt-14 sm:pt-20">
           <iframe
-            width="560"
+            width={isMobile ? "100%" : "560"}
             height="315"
             src={ACTIVITIES[id]?.video}
             title="YouTube video player"

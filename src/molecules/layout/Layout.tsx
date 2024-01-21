@@ -116,7 +116,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           )}
           {isLoggedIn && isMobile && (
-            <div className="z-30 mr-3">
+            <div className="z-30 ml-auto mr-3">
               <IoMenu
                 size={32}
                 className="hover:cursor-pointer"
