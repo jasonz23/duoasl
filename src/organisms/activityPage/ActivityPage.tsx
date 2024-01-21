@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import Button from "~/atoms/button/Button";
@@ -19,6 +21,50 @@ const ACTIVITIES = [
   },
 ];
 
+const SuccessModal = () => {
+  const router = useRouter();
+  return (
+    <div className="absolute left-1/2 top-1/2 flex h-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-3 rounded-lg border-2 border-black bg-white sm:w-1/2">
+      <div className="">You Did It!</div>
+      <Image
+        src="/images/frog/main-frog.png"
+        alt="success"
+        width={100}
+        height={100}
+      />
+      <Button
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        Back To HomePage
+      </Button>
+    </div>
+  );
+};
+
+const FailedModal = () => {
+  const router = useRouter();
+  return (
+    <div className="absolute left-1/2 top-1/2 flex h-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-3 rounded-lg border-2 border-black bg-white sm:w-1/2">
+      <div className="">Not Quite Right</div>
+      <Image
+        src="/images/frog/failed.png"
+        alt="success"
+        width={100}
+        height={100}
+      />
+      <Button
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        Back To HomePage
+      </Button>
+    </div>
+  );
+};
+
 interface ActivityPageProps {
   activityId: string;
 }
@@ -33,6 +79,8 @@ const ActivityPage = (props: ActivityPageProps) => {
   const [counter, setCounter] = React.useState(5);
   const [loadingCounter, setLoadingCounter] = React.useState(3);
   const [loadingCounterFlag, setLoadingCounterFlag] = React.useState(false);
+  const [showSuccessModal, setShowSuccessModal] = React.useState(false);
+  const [showFailedModal, setShowFailedModal] = React.useState(false);
   const [tab, setTab] = React.useState(1);
   const { isMobile } = useWindowSize();
 
@@ -116,7 +164,9 @@ const ActivityPage = (props: ActivityPageProps) => {
   };
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center gap-3 pt-20">
+    <main className="relative flex h-screen w-screen flex-col items-center gap-3 pt-20">
+      {showSuccessModal && <SuccessModal />}
+      {showFailedModal && <FailedModal />}
       <div>Activity {activityId}</div>
       <div>{ACTIVITIES[id]?.question}</div>
       <Tabs
@@ -127,7 +177,7 @@ const ActivityPage = (props: ActivityPageProps) => {
         }}
       />
       {tab === 1 && (
-        <div className="flex flex-col gap-3 pt-14 sm:pt-20">
+        <div className="flex flex-col gap-3 pt-14 sm:pt-16">
           <iframe
             width={isMobile ? "100%" : "560"}
             height="315"

@@ -1,11 +1,21 @@
+import { UserContext } from "~/contexts/useUserContext";
 import { animated, useSpring } from "@react-spring/web";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
-const LilyPadImage = () => {
+interface LilyPadProps {
+  disabled?: boolean;
+}
+const LilyPadImage = (props: LilyPadProps) => {
+  const disabled = props.disabled;
   return (
     <Image
-      className="hover:scale-[110%]"
+      style={{
+        filter: disabled ? "grayscale(100%)" : "none",
+        WebkitFilter: disabled ? "grayscale(100%)" : "none",
+      }}
+      className={`${disabled ? "cursor-default" : "cursor-pointer hover:scale-110"}`}
       src="/images/items/lily-pad.png"
       alt="lily-pad"
       width={100}
@@ -28,6 +38,8 @@ const FrogImage = () => {
 };
 
 const MainPage = () => {
+  const { state } = useContext(UserContext);
+  console.log(state);
   const lilyPageAnimation = useSpring({
     loop: true,
     from: { y: 0 },
@@ -57,50 +69,86 @@ const MainPage = () => {
         style={lilyPageAnimation}
         onClick={() => goToActivity(1)}
       >
-        <FrogImage />
+        {state.completed.length === 0 && <FrogImage />}
         <LilyPadImage />
       </animated.button>
       <animated.button
         className="absolute left-[40%] top-[22%] sm:left-[42%] sm:top-[25%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(2)}
+        onClick={() => {
+          if (!state.completed.includes("1")) return;
+          goToActivity(2);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("1") && state.completed.length === 1 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("1")} />
       </animated.button>
       <animated.button
         className="absolute top-[30%] sm:right-[35%] sm:top-[40%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(3)}
+        onClick={() => {
+          if (!state.completed.includes("2")) return;
+          goToActivity(3);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("2") && state.completed.length === 2 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("2")} />
       </animated.button>
       <animated.button
         className="absolute right-[7%] top-[40%] sm:right-[48%] sm:top-[50%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(4)}
+        onClick={() => {
+          if (!state.completed.includes("3")) return;
+          goToActivity(4);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("3") && state.completed.length === 3 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("3")} />
       </animated.button>
       <animated.button
         className="absolute left-[35%] top-[50%] sm:left-[35%] sm:top-[59%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(5)}
+        onClick={() => {
+          if (!state.completed.includes("4")) return;
+          goToActivity(5);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("4") && state.completed.length === 4 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("4")} />
       </animated.button>
       <animated.button
         className="absolute left-[12%] top-[60%] sm:left-[51%] sm:top-[68%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(6)}
+        onClick={() => {
+          if (!state.completed.includes("5")) return;
+          goToActivity(6);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("5") && state.completed.length === 5 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("5")} />
       </animated.button>
       <animated.button
         className="absolute right-[0%] top-[75%] sm:left-[60%] sm:top-[80%]"
         style={lilyPageAnimation}
-        onClick={() => goToActivity(7)}
+        onClick={() => {
+          if (!state.completed.includes("6")) return;
+          goToActivity(7);
+        }}
       >
-        <LilyPadImage />
+        {state.completed.includes("6") && state.completed.length === 6 && (
+          <FrogImage />
+        )}
+        <LilyPadImage disabled={!state.completed.includes("6")} />
       </animated.button>
     </main>
   );

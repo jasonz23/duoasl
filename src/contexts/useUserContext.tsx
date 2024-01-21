@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { createContext, useEffect, useReducer } from "react";
 
 type InitialStateType = {
-  user: any;
+  completed: string[];
 };
 const initialState = {
-  user: null,
+  completed: [],
 };
 
 export type ActionMap<M extends { [index: string]: any }> = {
@@ -22,12 +22,10 @@ export type ActionMap<M extends { [index: string]: any }> = {
 
 export enum UserReducerTypes {
   SET_USER = "set_user",
-  SET_METADATA = "set_metadata",
 }
 
 type UserPayload = {
-  [UserReducerTypes.SET_USER]: object;
-  [UserReducerTypes.SET_METADATA]: object;
+  [UserReducerTypes.SET_USER]: string[];
 };
 
 export type UserActions = ActionMap<UserPayload>[keyof ActionMap<UserPayload>];
@@ -36,12 +34,7 @@ export const userReducer = (state: InitialStateType, action: UserActions) => {
   switch (action.type) {
     case UserReducerTypes.SET_USER:
       return {
-        user: action.payload,
-      };
-    case UserReducerTypes.SET_METADATA:
-      return {
-        ...state,
-        metadata: action.payload,
+        completed: action.payload,
       };
     default:
       return state;
@@ -69,6 +62,12 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
     if (!user && !isLoading && router.asPath !== "/login") {
       void router.push("/login");
+    }
+    if (user !== undefined && user.email && localStorage.getItem(user.email)) {
+      dispatch({
+        type: UserReducerTypes.SET_USER,
+        payload: JSON.parse(localStorage.getItem(user?.email!)!),
+      });
     }
   }, [router.asPath, user, isLoading]);
 
