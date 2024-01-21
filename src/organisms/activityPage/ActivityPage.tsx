@@ -288,9 +288,11 @@ const ActivityPage = (props: ActivityPageProps) => {
               className="h-4 rounded-full"
             />
           </div>
-          {capturing ? (
-            <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
+          {capturing || submitLoading ? (
+            // TODO: fix stop button
+            <></>
           ) : (
+            // <Button onClick={handleStopCaptureClick}>Stop Capture</Button>
             <Button onClick={handleStartCaptureClick}>Start Capture</Button>
           )}
           {recordedChunks.length > 0 && <Button onClick={reset}>Reset</Button>}
