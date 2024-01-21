@@ -176,10 +176,9 @@ const ActivityPage = (props: ActivityPageProps) => {
         });
 
         const data = await res.json();
-        const completed = [...state.completed, activityId];
 
-        dispatch;
         if (data.success) {
+          const completed = [...state.completed, activityId];
           localStorage.setItem(user?.email!, JSON.stringify(completed));
           setShowSuccessModal(true);
         } else {
