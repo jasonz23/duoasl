@@ -21,7 +21,7 @@ const ACTIVITIES = [
   },
   {
     question: "hello",
-    video: "https://www.youtube.com/embed/SsLvqfTXo78?si=UhFlIVhjCkBRAb0y",
+    video: "/videos/hello.mov",
   },
   {
     question: "Thank you",
@@ -29,7 +29,7 @@ const ACTIVITIES = [
   },
   {
     question: "I Love You",
-    video: "https://www.youtube.com/embed/kN1fIgAaGHo?si=i0y6cJ34nSbjkTJ0",
+    video: "/videos/iloveyou.mp4",
   },
 ];
 
@@ -225,27 +225,15 @@ const ActivityPage = (props: ActivityPageProps) => {
       />
       {tab === 1 && (
         <div className="flex flex-col gap-3 pt-14 sm:pt-16">
-          {id !== 2 ? (
-            <iframe
+          <div className="h-auto w-auto">
+            <video
               width={isMobile ? "100%" : "560"}
               height="315"
+              controls
               src={ACTIVITIES[id]?.video}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <div className="h-auto w-auto">
-              <video
-                width={isMobile ? "100%" : "560"}
-                height="315"
-                controls
-                src={ACTIVITIES[id]?.video}
-                muted={true}
-              />
-            </div>
-          )}
+              muted={true}
+            />
+          </div>
           <Button
             onClick={() => {
               setTab(2);
