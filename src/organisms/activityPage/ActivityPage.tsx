@@ -12,11 +12,15 @@ const ACTIVITIES = [
     video: "",
   },
   {
-    question: "How do you sign 'hello'?",
+    question: "hello",
     video: "https://www.youtube.com/embed/SsLvqfTXo78?si=UhFlIVhjCkBRAb0y",
   },
   {
-    question: "",
+    question: "Thank you",
+    video: "",
+  },
+  {
+    question: "I Love You",
     video: "",
   },
 ];
@@ -168,7 +172,10 @@ const ActivityPage = (props: ActivityPageProps) => {
       {showSuccessModal && <SuccessModal />}
       {showFailedModal && <FailedModal />}
       <div>Activity {activityId}</div>
-      <div>{ACTIVITIES[id]?.question}</div>
+      <div>
+        How do you sign{" "}
+        <span className="text-green-600">{ACTIVITIES[id]?.question}</span> ?
+      </div>
       <Tabs
         selectedTab={tab}
         tabNames={["Learn", "Practice"]}

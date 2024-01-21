@@ -103,9 +103,14 @@ const MainPage = () => {
         style={lilyPageAnimation}
         onClick={() => {
           if (!state.completed.includes("3")) return;
-          goToActivity(4);
+          //   goToActivity(4);
         }}
       >
+        {state.completed.includes("3") && (
+          <div className="absolute -left-56 -top-14 flex h-[100px] w-[200px] items-center justify-center rounded-lg bg-white">
+            <div>You completed all we have right now</div>
+          </div>
+        )}
         {state.completed.includes("3") && state.completed.length === 3 && (
           <FrogImage />
         )}
